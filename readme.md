@@ -1,5 +1,5 @@
 # Template
-## A stripped-down starter theme for developers.
+## A stripped-down starter WordPress theme for developers.
 
 Based on the amazing Bones starter theme by Eddie Machado: http://themble.com/bones.
 
