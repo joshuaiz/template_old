@@ -1,13 +1,12 @@
 <?php
 /*
-Author: Eddie Machado
-URL: http://themble.com/bones/
+Author: Joshua Michaels for studio.bio
+URL: https://studio.bio/template
 
 This is where you can drop your custom functions or
 just edit things like thumbnail sizes, header images,
 sidebars, comments, etc.
 */
-
 
 
 // LOAD TEMPLATE (if you remove this, the theme will break)
@@ -31,9 +30,6 @@ function template_launch() {
 
   // let's get language support going, if you need it
   //load_theme_textdomain( 'templatetheme', get_template_directory() . '/library/translation' );
-
-  // USE THIS TEMPLATE TO CREATE CUSTOM POST TYPES EASILY
-  //require_once( 'library/custom-post-type.php' );
 
   // launching operation cleanup
   add_action( 'init', 'template_head_cleanup' );
@@ -73,9 +69,9 @@ add_action( 'after_setup_theme', 'template_launch' );
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
-add_image_size( 'bones-thumb-600', 600, 600, true );
-add_image_size( 'bones-thumb-300', 300, 300, true );
-add_image_size( 'bones-thumb-300', 150, 150, true );
+add_image_size( 'template-image-600', 600, 600, true );
+add_image_size( 'template-image-300', 300, 300, true );
+add_image_size( 'template-image-300', 150, 150, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -89,21 +85,21 @@ inside the thumbnail function.
 
 For example, to call the 300 x 100 sized image,
 we would use the function:
-<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
+<?php the_post_thumbnail( 'template-image-300' ); ?>
 for the 600 x 150 image:
-<?php the_post_thumbnail( 'bones-thumb-600' ); ?>
+<?php the_post_thumbnail( 'template-image-600' ); ?>
 
 You can change the names and dimensions to whatever
 you like. Enjoy!
 */
 
-add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
+add_filter( 'image_size_names_choose', 'template_custom_image_sizes' );
 
-function bones_custom_image_sizes( $sizes ) {
+function template_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
-        'bones-thumb-600' => __('600px by 600px'),
-        'bones-thumb-300' => __('300px by 300px'),
-        'bones-thumb-150' => __('150px by 150px'),
+        'template-image-600' => __('600px by 600px'),
+        'template-image-300' => __('300px by 300px'),
+        'template-image-150' => __('150px by 150px'),
     ) );
 }
 
@@ -234,17 +230,13 @@ function template_comments( $comment, $args, $depth ) {
 
 
 /*
-This is a modification of a function found in the
-twentythirteen theme where we can declare some
-external fonts. If you're using Google Fonts, you
-can replace these fonts, change it in your scss files
-and be up and running in seconds.
+Use this to add Google or other web fonts.
 */
-// function bones_fonts() {
-//   wp_enqueue_style('googleFonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,');
+// function template_fonts() {
+//   wp_enqueue_style('templateFonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,');
 // }
 
-// add_action('wp_enqueue_scripts', 'bones_fonts');
+// add_action('wp_enqueue_scripts', 'template_fonts');
 
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

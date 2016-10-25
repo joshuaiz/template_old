@@ -801,6 +801,17 @@ them however you see fit.
     padding-right: 0.75em;
     width: 8.33%; } }
 
+.last-col {
+  float: right;
+  padding-right: 0 !important; }
+
+/*
+Mobile Grid Styles
+These are the widths for the mobile grid.
+There are four types, but you can add or customize
+them however you see fit.
+*/
+/* Portrait tablet to landscape */
 /*********************
 IMPORTING MODULES
 Modules are reusable blocks or elements we use throughout the project.
@@ -1278,11 +1289,14 @@ LINK STYLES
 *********************/
 a, a:visited {
   color: #0088cc;
+  text-decoration: none;
+  font-weight: 500;
   /* on hover */
   /* on click */
   /* mobile tap color */ }
   a:hover, a:focus, a:visited:hover, a:visited:focus {
-    color: #00699e; }
+    color: #00699e;
+    text-decoration: underline; }
   a:link, a:visited:link {
     /*
 		this highlights links on iPhones/iPads.
@@ -1487,8 +1501,9 @@ POSTS & CONTENT STYLES
     max-width: 100%;
     height: auto; }
   .entry-content pre {
-    background: #323944;
-    color: #f8f9fa;
+    background: #073642;
+    color: #93a1a1;
+    font-family: Monaco;
     font-size: 0.9em;
     padding: 1.5em;
     margin: 0 0 1.5em;
@@ -1709,8 +1724,6 @@ SIDEBARS & ASIDES
 .no-widgets {
   background-color: #fff;
   padding: 1.5em;
-  text-align: center;
-  border: 1px solid #ccc;
   border-radius: 2px;
   margin-bottom: 1.5em; }
 
@@ -1719,7 +1732,7 @@ FOOTER STYLES
 *********************/
 .footer {
   clear: both;
-  background-color: #323944;
+  background-color: #004466;
   color: #f8f9fa; }
 
 /*

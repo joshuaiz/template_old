@@ -160,6 +160,7 @@ function template_scripts_and_styles() {
 // Remove emojis
 // If you want emojis, don't let me stop you from having a good time. 
 // Comment these functions out or just delete them.
+
 add_action( 'init', 'disable_wp_emojicons' );
 
 function disable_wp_emojicons() {
@@ -228,7 +229,17 @@ function template_theme_support() {
 
 	// to add header image support go here: http://themble.com/support/adding-header-background-image-support/
 
-	// adding post format support [removed by *JM*]
+	/* Post Formats
+	Ahhhh yes, the wild and wonderful world of Post Formats. 
+	I've never really gotten into them but I could see some
+	situations where they would come in handy. Here's a few
+	examples: https://www.competethemes.com/blog/wordpress-post-format-examples/
+
+	If you want to use them in your project, go to town. 
+	Just uncomment the function below and format the bejesus 
+	out of your posts.
+	*/
+
 	// add_theme_support( 'post-formats',
 	// 	array(
 	// 		'aside',             // title less blurb
@@ -250,7 +261,7 @@ function template_theme_support() {
 	register_nav_menus(
 		array(
 			'main-nav' => __( 'The Main Menu', 'templatetheme' ),   // main nav in header
-			'footer-links' => __( 'Footer Links', 'templatetheme' ) // secondary nav in footer
+			// 'footer-links' => __( 'Footer Links', 'templatetheme' ) // secondary nav in footer. Uncomment to use
 		)
 	);
 
@@ -261,14 +272,14 @@ function template_theme_support() {
 		'comment-form'
 	) );
 
-} /* end bones theme support */
+} /* end template theme support */
 
 
 /*********************
 RELATED POSTS FUNCTION
 *********************/
 
-// Related Posts Function (call using bones_related_posts(); )
+// Related Posts Function (call using template_related_posts(); )
 function template_related_posts() {
 	echo '<ul id="template-related-posts">';
 	global $post;
@@ -337,58 +348,79 @@ function template_excerpt_more($more) {
 }
 
 
-/****************************************
-* TEMPLATE COOL FUNCTIONS *
-****************************************/
+/*
+****************************************
+*      Template Special Functions      *
+****************************************
+*/
 
-// Page Slug Body Class
+// Body Class functions
 // Adds more slugs to body class so we can style individual pages + posts.
-function template_body_class( $classes ) {
-  global $post;
+// Page Slug Body Class
+function template_page_slug_body_class( $classes ) {
+global $post;
+if ( isset( $post ) ) {
+/* $classes[] = $post->post_type . '-' . $post->post_name; *//*Un comment this if you want the post_type-post_name body class */
+$pagetemplate = get_post_meta( $post->ID, '_wp_page_template', true);
+$classes[] = sanitize_html_class( str_replace( '.', '-', $pagetemplate ), '' );
+$classes[] = $post->post_name;
+}
 
-    if ( isset( $post ) ) { // 
-      /* $classes[] = $post->post_type . '-' . $post->post_name; *//*Un comment this if you want the post_type-post_name body class */
-      $pagetemplate = get_post_meta( $post->ID, '_wp_page_template', true);
-      $classes[] = sanitize_html_class( str_replace( '.', '-', $pagetemplate ), '' );
-      $classes[] = $post->post_name;
-    }
-
-    if (is_page()) {
-      // If we *do* have an ancestors list, process it
-      // http://codex.wordpress.org/Function_Reference/get_post_ancestors
-      if ($parents = get_post_ancestors($post->ID)) {
-          foreach ((array)$parents as $parent) {
-              // As the array contains IDs only, we need to get each page
-              if ($page = get_page($parent)) {
-                  // Add the current ancestor to the body class array
-                  $classes[] = "{$page->post_type}-{$page->post_name}";
-              }
-          }
-    }
+if (is_page()) {
+        global $post;
         
-  # Has parent / is sub-page
-  if ( $post->post_parent ) {
-      # Parent post name/slug
-      $parent = get_post( $post->post_parent );
-      $classes[] = $parent->post_name;
-      # Parent template name
-      $parent_template = get_post_meta( $parent->ID, '_wp_page_template', true);
-      if ( !empty($parent_template) )
-          $classes[] = 'template-'.sanitize_html_class( str_replace( '.', '-', $parent_template ), '' );
+        // If we *do* have an ancestors list, process it
+        // http://codex.wordpress.org/Function_Reference/get_post_ancestors
+        if ($parents = get_post_ancestors($post->ID)) {
+            foreach ((array)$parents as $parent) {
+                // As the array contains IDs only, we need to get each page
+                if ($page = get_page($parent)) {
+                    // Add the current ancestor to the body class array
+                    $classes[] = "{$page->post_type}-{$page->post_name}";
+                }
+            }
+        }
+ 
+        // Add the current page to our body class array
+        $classes[] = "{$post->post_type}-{$post->post_name}";
     }
-
-    // Add the current page to our body class array
-    $classes[] = "{$post->post_type}-{$post->post_name}";
-
-  }
 
 return $classes;
-
 }
+add_filter( 'body_class', 'template_page_slug_body_class' );
+
+
+// Page template body classes
+function template_page_template_body_class( $classes ) {
+    global $post;
+
+    # Page
+    if ( is_page() ) {
+        # Has parent / is sub-page
+        if ( $post->post_parent ) {
+            # Parent post name/slug
+            $parent = get_post( $post->post_parent );
+            $classes[] = $parent->post_name;
+
+            # Parent template name
+            $parent_template = get_post_meta( $parent->ID, '_wp_page_template', true);
+            
+            if ( !empty($parent_template) )
+                $classes[] = 'template-'.sanitize_html_class( str_replace( '.', '-', $parent_template ), '' );
+        }
+    }
+
+    return $classes;
+}
+add_filter( 'body_class', 'template_page_template_body_class' );
 
 
 // Let's add some extra Quicktags
 // These come in handy especially for clients who aren't HTML masters
+
+// Hook into the 'admin_print_footer_scripts' action
+add_action( 'admin_print_footer_scripts', 'template_custom_quicktags' );
+
 function template_custom_quicktags() {
 
   if ( wp_script_is( 'quicktags' ) ) {
@@ -406,8 +438,6 @@ function template_custom_quicktags() {
   }
 
 }
-// Hook into the 'admin_print_footer_scripts' action
-add_action( 'admin_print_footer_scripts', 'template_custom_quicktags' );
 
 
 // Automatically grab the post thumbnail for excerpts.
@@ -440,13 +470,13 @@ function template_excerpt_thumbnail($excerpt) {
 // Load dashicons on the front end
 // To use, go here and copy the css/html for the dashicon you want: https://developer.wordpress.org/resource/dashicons/
 // Example: <span class="dashicons dashicons-wordpress"></span>
-function wab_load_dashicons() {
+
+add_action( 'wp_enqueue_scripts', 'template_load_dashicons' );
+
+function template_load_dashicons() {
 
     wp_enqueue_style( 'dashicons' );
 }
-
-add_action( 'wp_enqueue_scripts', 'wab_load_dashicons' );
-
 
 
 /*****************************************
@@ -502,7 +532,7 @@ Fields.
 // 		'Roboto' => 'Roboto',
 // 		'Ubuntu' => 'Ubuntu',
 // 		'Vollkorn' => 'Vollkorn',
-
+		// Add your own fonts to the list
 //     );
 //     return $fonts;
 // }

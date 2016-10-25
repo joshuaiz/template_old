@@ -84,10 +84,13 @@ LINK STYLES
 
 a, a:visited {
 	color: $link-color;
+	text-decoration: none;
+	font-weight: 500;
 
 	/* on hover */
 	&:hover, &:focus {
 		color: $link-hover;
+		text-decoration: underline;
 	}
 
 	/* on click */
@@ -451,8 +454,9 @@ POSTS & CONTENT STYLES
 			}
 
 			pre {
-				background: $black;
-				color: $light-gray;
+				background: #073642; // Solarized dark
+				color: #93a1a1;
+				font-family: Monaco;
 				font-size: 0.9em;
 				padding: 1.5em;
 				margin: 0 0 1.5em;
@@ -874,8 +878,6 @@ SIDEBARS & ASIDES
 	.no-widgets {
 		background-color: $white;
 		padding: 1.5em;
-		text-align: center;
-		border: 1px solid $border-color;
 		border-radius: 2px;
 		margin-bottom: 1.5em;
 	}
@@ -886,7 +888,7 @@ FOOTER STYLES
 
 .footer {
 	clear: both;
-	background-color: $black;
+	background-color: $sb-dark-blue;
 	color: $light-gray;
 }
 

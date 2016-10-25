@@ -31,7 +31,7 @@
 
 								<section class="entry-content cf">
 
-									<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
+									<?php the_post_thumbnail( 'template-thumb-300' ); ?>
 
 									<?php the_excerpt(); ?>
 
@@ -45,7 +45,7 @@
 
 							<?php endwhile; ?>
 
-									<?php bones_page_navi(); ?>
+									<?php template_page_navi(); ?>
 
 							<?php else : ?>
 

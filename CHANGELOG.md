@@ -6,7 +6,7 @@ Author: Joshua Michaels for studio.bio
 
 *******************************************************************
 
-### 1.00 2016-10-24
+### 1.0 2016-10-24
 And here we go.
 
 - updated to normalize.css 5.0
