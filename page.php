@@ -14,6 +14,16 @@
 
 									<h1 class="page-title" itemprop="headline"><?php the_title(); ?></h1>
 
+									<p class="byline entry-meta vcard">
+
+										<?php // the post time ?>
+										<time class="entry-date" datetime="<?php the_date('c'); ?>" itemprop="datePublished" pubdate>Published: <?php echo the_time( 'l, F jS, Y '); ?>at <?php echo the_time( 'g:ia' ); ?></time>
+
+										<?php // the author of the post ?>
+                       					<span class="by">by </span> <span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person"><?php echo get_the_author_link( get_the_author_meta( 'ID' ) ); ?></span>
+
+                       				</p>
+
 								</header> <?php // end article header ?>
 
 								<section class="entry-content cf" itemprop="articleBody">

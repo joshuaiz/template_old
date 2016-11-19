@@ -1,9 +1,9 @@
 <?php
 /**
-* Plugin Name: Template Staff
+* Plugin Name: Template Staff CPT
 * Description: Staff CPT sample for Template theme
 * Version: 1.0
-* Author: Joshua Michaels for Studio Bio
+* Author: Joshua Michaels for studio.bio
 * Author URI: https://studio.bio/
 */
 

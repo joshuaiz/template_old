@@ -1,6 +1,6 @@
 <?php
 /*
- Template Name: Full Width Page
+ Template Name: Full Width Gallery Page
 */
 ?>
 
@@ -9,6 +9,30 @@
 			<div id="content">
 
 				<div id="inner-content" class="wrap cf">
+
+					<section class="gallery-outer">
+
+    					<section class="gallery-inner">
+
+    						<?php 
+
+							$images = get_field('gallery');
+							
+							if( $images ): ?>
+							    <div id="carousel" class="flexslider">
+							        <ul class="slides">
+							            <?php foreach( $images as $image ): ?>
+							                <li>
+							                    <img src="<?php echo $image; ?>" alt="<?php echo $image['alt']; ?>" />
+							                </li>
+							            <?php endforeach; ?>
+							        </ul>
+							    </div>
+							<?php endif; ?>
+    					
+    					</section>
+
+					</section>
 
 						<main id="main" class="m-all t-all d-all cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 

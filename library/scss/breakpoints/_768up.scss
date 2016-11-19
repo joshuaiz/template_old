@@ -31,19 +31,43 @@ LAYOUT & GRID STYLES
 HEADER STYLES
 *********************/
 
-.header {}
+.header {
+	height: 100px;
+}
 
-	#logo {}
+#inner-header {
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+}
+
+	#logo {
+		width: 150px;
+    /* display: inline-block; */
+    	height: 100px;
+    	overflow: hidden;
+    	display: block;
+    	line-height: 100px;
+
+	}
 
 /*********************
 NAVIGATION STYLES
 *********************/
 
+.header nav {
+	height: 80px;
+	position: absolute;
+	right: 0;
+}
+
 .nav {
 	border: 0;
+	list-style-type: none;
+	display: inline-block;
 	ul {
 		background:$black;
-		margin-top:0;
+		margin: 0;
 	}
 	li {
 		float: left;
@@ -51,14 +75,15 @@ NAVIGATION STYLES
 
 		a {
 			border-bottom: 0;
-
+			line-height: 100px;
+			padding: 0 1em;
 			/*
 			you can use hover styles here even though this size
 			has the possibility of being a mobile device.
 			*/
 			&:hover, &:focus {
-				color: $white;
-				text-decoration: underline;
+				color: #555;
+				text-decoration: none;
 			}
 		}
 

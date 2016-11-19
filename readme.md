@@ -7,7 +7,7 @@ If you're not familiar with Bones, I highly suggest you check it out before usin
 
 I make no Bones (pun definitely intended) about Template copying a lot of what was included in Bones but wanted to customize it for my studio's workflow. This may or may not work for you.
 
-With that in mind, I've removed some things I never used in Bones (like Link Pages and tags on pages) and added some things in that I use often: more page templates, a custom post type plugin template, and some custom functions.
+With that in mind, I've removed some things I never used in Bones (like Link Pages and tags on pages, amongst others) and added some things in that I use often: more page templates, updated default font stack, a custom post type plugin template, and some custom functions.
 
 Edit this, fork it, change it, delete it - whatever. As Eddie might say: it's your world. But I hope you make something cool with it.
 
@@ -18,7 +18,7 @@ My introduction to Bones came four years ago after trying out just about every s
 
 Yet, over time I found I was making the same changes to Bones at the start of every project and this was taking up valuable time. Thus, I created the predecessor to this theme called 'Osseous' which included some of the changes found in Template. Osseous literally means: 'of, relating to, or composed of bone' and was a good departure point.
 
-Template picks up where Osseous left off and takes things a bit further. Booyakasha!
+Template picks up where Osseous left off and takes things a bit further with 'template' namespaced functions and customized defaults.
 
 
 ###Other stuffs

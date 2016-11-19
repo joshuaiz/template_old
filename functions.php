@@ -69,6 +69,8 @@ add_action( 'after_setup_theme', 'template_launch' );
 /************* THUMBNAIL SIZE OPTIONS *************/
 
 // Thumbnail sizes
+add_image_size('template-image-1200', 1200, 1200, true);
+add_image_size('photostrip', 900, 600, true);
 add_image_size( 'template-image-600', 600, 600, true );
 add_image_size( 'template-image-300', 300, 300, true );
 add_image_size( 'template-image-300', 150, 150, true );
@@ -97,6 +99,8 @@ add_filter( 'image_size_names_choose', 'template_custom_image_sizes' );
 
 function template_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
+        'template-image-1200' => __('1200px by 1200px'),
+        'photostrip' => __('900px by 600px'),
         'template-image-600' => __('600px by 600px'),
         'template-image-300' => __('300px by 300px'),
         'template-image-150' => __('150px by 150px'),
@@ -239,4 +243,58 @@ Use this to add Google or other web fonts.
 // add_action('wp_enqueue_scripts', 'template_fonts');
 
 
-/* DON'T DELETE THIS CLOSING TAG */ ?>
+/****************************************
+* SCHEMA *
+http://www.longren.io/add-schema-org-markup-to-any-wordpress-theme/
+****************************************/
+
+function html_schema() {
+
+    $schema = 'http://schema.org/';
+ 
+    // Is single post
+    if( is_single()) {
+        $type = "Article";
+    }
+    // Is blog home, archive or category
+    else if( is_home() || is_archive() || is_category() ) {
+        $type = "Blog";
+    }
+    // Is static front page
+    else if( is_front_page()) {
+        $type = "Website";
+    }
+    // Is a general page
+     else {
+        $type = 'WebPage';
+    }
+ 
+    echo 'itemscope="itemscope" itemtype="' . $schema . $type . '"';
+}
+
+
+add_action( 'wp_enqueue_scripts', 'prefix_enqueue_awesome' );
+/**
+ * Register and load font awesome CSS files using a CDN.
+ *
+ * @link   http://www.bootstrapcdn.com/#fontawesome
+ * @author FAT Media
+ */
+function prefix_enqueue_awesome() {
+  wp_enqueue_style( 'prefix-font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '4.7.0' );
+}
+
+if( function_exists('acf_add_options_page') ) {
+  
+  acf_add_options_page(array(
+    'page_title'  => 'Theme Options',
+    'menu_title'  => 'Theme Options',
+    'menu_slug'   => 'theme-options',
+    'capability'  => 'edit_posts',
+    'redirect'    => false
+  ));
+  
+}
+
+/* DON'T DELETE THIS CLOSING TAG */ 
+?>

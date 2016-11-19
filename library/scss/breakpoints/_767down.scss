@@ -11,3 +11,29 @@ I find it easier to do it this way than to have to override base styles.
 
 ******************************************************************/
 
+.header {
+	height: 100px;
+}
+
+	#logo {
+		width: 150px;
+    /* display: inline-block; */
+    	height: 100px;
+    	overflow: hidden;
+    	display: block;
+    	line-height: 100px;
+
+	}
+
+#menu-main {
+	display: none;
+}
+
+button#responsive-menu-button {
+	background: none !important;
+	top: 22px !important;
+}
+
+.responsive-menu-inner, .responsive-menu-inner::before, .responsive-menu-inner::after {
+	background-color: #000 !important;
+}
