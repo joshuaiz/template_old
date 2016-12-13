@@ -18,7 +18,15 @@ My introduction to Bones came four years ago after trying out just about every s
 
 Yet, over time I found I was making the same changes to Bones at the start of every project and this was taking up valuable time. Thus, I created the predecessor to this theme called 'Osseous' which included some of the changes found in Template. Osseous literally means: 'of, relating to, or composed of bone' and was a good departure point.
 
-Template picks up where Osseous left off and takes things a bit further with 'template' namespaced functions and customized defaults.
+Template picks up where Osseous left off and takes things a bit further with 'template'. It includes namespaced functions and customized defaults along with a lot of other stuff I like and use for my development. Your mileage may vary.
+
+###Recommended Plugins
+Some of the stuff in Template references plugins that I use with just about every site and I recommend:
+- Advanced Custom Fields (Pro): https://www.advancedcustomfields.com
+- WP Retina 2x: https://wordpress.org/plugins/wp-retina-2x/
+- EWWW Image Optimizer: https://wordpress.org/plugins/ewww-image-optimizer/
+- Plugin Organizer: https://wordpress.org/plugins/plugin-organizer/
+- WP Migrate DB Pro: https://deliciousbrains.com/wp-migrate-db-pro/
 
 
 ###Other stuffs
